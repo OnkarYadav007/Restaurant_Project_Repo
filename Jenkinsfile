@@ -4,8 +4,8 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'restaurant-website'   // [DOCKER_IMAGE_NAME]
-        // CHANGE THIS to your own python.exe path (use \\ for each \)
-        PYTHON = 'C:\Users\ASUS\AppData\Local\Programs\Python\Python314\python.exe'
+        // Forward slashes avoid the backslash problem in Jenkinsfiles
+        PYTHON = 'C:/Users/ASUS/AppData/Local/Programs/Python/Python314/python.exe'
         // Makes sure Jenkins can find the docker command
         PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
     }
