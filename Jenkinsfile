@@ -1,4 +1,4 @@
-// Declarative Jenkins pipeline (runs on a Linux Jenkins agent with Python 3 and Docker installed)
+// Declarative Jenkins pipeline for a Windows Jenkins agent
 pipeline {
     agent any
 
@@ -7,32 +7,32 @@ pipeline {
     }
 
     stages {
-        // Stage 1: download the latest code from GitHub
+        // Stage 1: get the latest code from GitHub (uses the repo set in the job)
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/OnkarYadav007/Restaurant_Project_Repo.git'
+                checkout scm
             }
         }
 
         // Stage 2: create a virtual environment and install packages
         stage('Install Dependencies') {
             steps {
-                sh 'python3 -m venv venv'
-                sh '. venv/bin/activate && pip install -r requirements.txt'
+                bat 'python -m venv venv'
+                bat 'venv\\Scripts\\python -m pip install -r requirements.txt'
             }
         }
 
         // Stage 3: run the automated tests; the pipeline fails if a test fails
         stage('Run pytest') {
             steps {
-                sh '. venv/bin/activate && pytest'
+                bat 'venv\\Scripts\\python -m pytest'
             }
         }
 
-        // Stage 4: build the Docker image (tagged with the Jenkins build number)
+        // Stage 4: build the Docker image, tagged with the Jenkins build number
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} .'
+                bat 'docker build -t %IMAGE_NAME%:%BUILD_NUMBER% .'
             }
         }
     }
