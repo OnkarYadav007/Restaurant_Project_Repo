@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-text">
+    <h1>Fresh Food, Made With Love</h1>
+    <p>Pizzas, burgers and desserts served hot in a warm, friendly place.</p>
+    <a class="btn" href="{{ url_for('menu') }}">View Menu</a>
+  </div>
+  <img src="{{ url_for('static', filename='images/restaurant.svg') }}" alt="Restaurant illustration">
+</section>
+
+<section class="section">
+  <h2>Our Favourites</h2>
+  <div class="cards">
+    {% for item in featured %}
+    <article class="card">
+      <div class="card-icon">{{ item.icon }}</div>
+      <h3>{{ item.name }}</h3>
+      <p>{{ item.desc }}</p>
+      <span class="price">${{ "%.2f"|format(item.price) }}</span>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section about-preview">
+  <h2>About Us</h2>
+  <p>We are a family-run restaurant serving fresh meals since 2015.</p>
+  <a class="btn btn-outline" href="{{ url_for('about') }}">Read our story</a>
+</section>
+{% endblock %}

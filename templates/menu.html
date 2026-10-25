@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Menu{% endblock %}
+{% block content %}
+<section class="section page-title"><h1>Our Menu</h1></section>
+<section class="section">
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="pizza">Pizza</button>
+    <button class="filter-btn" data-filter="burger">Burgers</button>
+    <button class="filter-btn" data-filter="drinks">Drinks</button>
+    <button class="filter-btn" data-filter="dessert">Desserts</button>
+  </div>
+  <div class="cards">
+    {% for item in items %}
+    <article class="card menu-item" data-category="{{ item.category }}">
+      <div class="card-icon">{{ item.icon }}</div>
+      <h3>{{ item.name }}</h3>
+      <p>{{ item.desc }}</p>
+      <span class="price">${{ "%.2f"|format(item.price) }}</span>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

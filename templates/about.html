@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<section class="section page-title"><h1>About Us</h1></section>
+<section class="section two-col">
+  <img src="{{ url_for('static', filename='images/pizza.svg') }}" alt="Pizza illustration">
+  <div>
+    <h2>Our Story</h2>
+    <p>Tasty Corner started in 2015 as a small family kitchen. Today we serve hundreds of happy guests every week.</p>
+    <p>We use fresh, local ingredients and cook every dish to order. Good food should be simple, honest and tasty.</p>
+    <ul class="values">
+      <li>🌿 Fresh ingredients</li>
+      <li>👨‍🍳 Experienced chefs</li>
+      <li>💛 Friendly service</li>
+    </ul>
+  </div>
+</section>
+{% endblock %}
