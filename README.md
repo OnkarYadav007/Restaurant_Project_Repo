@@ -101,6 +101,17 @@ Add images to the `screenshots/` folder and link them here:
 | Home | Menu | Jenkins pipeline | Docker |
 |---|---|---|---|
 | `screenshots/home.png` | `screenshots/menu.png` | `screenshots/jenkins.png` | `screenshots/docker.png` |
+<img width="1600" height="777" alt="Menu Page" src="https://github.com/user-attachments/assets/bafa16be-da68-41d9-a69c-02851e64eab5" />
+<img width="1600" height="820" alt="Jenkins Proof" src="https://github.com/user-attachments/assets/f956c177-29b5-45f6-9660-101004b6c65b" />
+<img width="1600" height="765" alt="Home page 4" src="https://github.com/user-attachments/assets/281cb660-28b8-4d57-997d-5edd76d56fe5" />
+<img width="1600" height="772" alt="Home page 3" src="https://github.com/user-attachments/assets/c5345046-fab8-4aaa-b419-a3c6ede79493" />
+<img width="1600" height="769" alt="Home page 2" src="https://github.com/user-attachments/assets/a603c99f-01d2-4a45-bd3a-c7a1e0b7eb71" />
+<img width="1600" height="807" alt="Home page 1" src="https://github.com/user-attachments/assets/72a207ee-071c-4713-aeb7-000553393850" />
+<img width="1600" height="857" alt="Docker Image Proof" src="https://github.com/user-attachments/assets/c127c80a-dbf9-4f50-8d8e-a09c2d6cb226" />
+<img width="1600" height="852" alt="Docker Container Proof" src="https://github.com/user-attachments/assets/d8d0b5ba-ac6b-44bd-96c7-808a992c56e1" />
+<img width="1600" height="809" alt="Contact Page" src="https://github.com/user-attachments/assets/e404f090-d2f7-4809-a5d4-753f7f6b3d2d" />
+<img width="1600" height="772" alt="About page 2" src="https://github.com/user-attachments/assets/7c228bde-7ae5-48cc-b464-1aeabc072a05" />
+<img width="1600" height="768" alt="About page 1" src="https://github.com/user-attachments/assets/3abe9e47-f77c-4c1c-8bdc-64df1df0dbe2" />
 
 ## Future Improvements
 - Online table-booking form with email confirmation
