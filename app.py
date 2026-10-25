@@ -5,32 +5,42 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 # Menu data lives in a plain Python list. No database is needed.
+# To use a real photo instead of an illustration, drop the file in
+# static/images/ and change the "image" value (for example "margherita.jpg").
 MENU = [
-    {"name": "Margherita Pizza", "category": "pizza", "price": 9.99, "icon": "🍕",
-     "desc": "Tomato, fresh mozzarella and basil on a thin crust."},
-    {"name": "Pepperoni Pizza", "category": "pizza", "price": 11.49, "icon": "🍕",
-     "desc": "Spicy pepperoni with melted cheese."},
-    {"name": "Classic Burger", "category": "burger", "price": 8.99, "icon": "🍔",
-     "desc": "Beef patty, lettuce, tomato and house sauce."},
-    {"name": "Veggie Burger", "category": "burger", "price": 8.49, "icon": "🍔",
-     "desc": "Crispy veggie patty with avocado and mayo."},
-    {"name": "Fresh Lemonade", "category": "drinks", "price": 3.49, "icon": "🍋",
-     "desc": "Squeezed daily, served over ice."},
-    {"name": "Chocolate Brownie", "category": "dessert", "price": 4.99, "icon": "🍫",
-     "desc": "Warm brownie with a scoop of vanilla ice cream."},
+    {"name": "Margherita Pizza", "category": "pizza", "price": 349, "veg": True,
+     "badge": "Bestseller", "image": "pizza-margherita.svg",
+     "desc": "San Marzano tomato, fresh mozzarella and basil on a wood-fired crust."},
+    {"name": "Pepperoni Pizza", "category": "pizza", "price": 429, "veg": False,
+     "badge": "Spicy", "image": "pizza-pepperoni.svg",
+     "desc": "Crisp-edged pepperoni, mozzarella and a hint of chilli oil."},
+    {"name": "Classic Burger", "category": "burger", "price": 299, "veg": False,
+     "badge": "Chef's pick", "image": "burger-classic.svg",
+     "desc": "Juicy beef patty, cheddar, lettuce, tomato and our house sauce."},
+    {"name": "Veggie Burger", "category": "burger", "price": 279, "veg": True,
+     "badge": "", "image": "burger-veggie.svg",
+     "desc": "Crispy garden patty with avocado, cucumber and herb mayo."},
+    {"name": "Fresh Lemonade", "category": "drinks", "price": 129, "veg": True,
+     "badge": "Refreshing", "image": "lemonade.svg",
+     "desc": "Hand-squeezed lemons, mint and ice. Sweet, sharp and cold."},
+    {"name": "Chocolate Brownie", "category": "dessert", "price": 199, "veg": True,
+     "badge": "Must try", "image": "brownie.svg",
+     "desc": "Warm fudgy brownie topped with vanilla ice cream and chocolate sauce."},
 ]
 
 CONTACT = {
-    "address": "123 Food Street, Pune, India",
+    "address": "123 Food Street, Pune, Maharashtra",
     "phone": "+91 98765 43210",
     "email": "hello@restaurant.example",
-    "hours": "Mon-Sun: 11:00 AM - 11:00 PM",
+    "hours": [("Monday - Friday", "11:00 AM - 11:00 PM"),
+              ("Saturday - Sunday", "10:00 AM - 12:00 AM")],
 }
 
 
 @app.route("/")
 def home():
-    return render_template("index.html", active="home", featured=MENU[:3])
+    featured = [MENU[0], MENU[2], MENU[5]]
+    return render_template("index.html", active="home", featured=featured)
 
 
 @app.route("/about")

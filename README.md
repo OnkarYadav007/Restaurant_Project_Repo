@@ -1,33 +1,41 @@
 # Restaurant_Project_Repo
 
-A simple, beginner-friendly restaurant website built with **Flask**, HTML, CSS and JavaScript.
-No database, no login, no external services. Includes **pytest** tests, a **Dockerfile** and a **Jenkinsfile**.
+A modern, responsive restaurant website ("Tasty Corner") built with **Flask**, HTML, CSS and JavaScript.
+No database, no login, no external services. Includes **pytest** tests, a **Dockerfile** and a **Jenkins** pipeline.
 
 ## Features
 - Four pages: Home, About, Menu, Contact
-- Responsive navigation bar (hamburger menu on mobile)
-- Hero section, menu cards, contact info, footer
-- JavaScript: menu filter, contact form validation, navbar shadow, auto year
+- Hero section with illustrated dishes, scrolling highlights strip, testimonials and call-to-action
+- Menu cards with illustrations, badges and vegetarian / non-vegetarian markers
+- Menu category filter **and** live search
+- Responsive navigation bar (animated hamburger menu on mobile)
+- Contact form with client-side validation
+- Scroll-reveal animations (disabled automatically for users who prefer reduced motion)
 - Menu data stored in a plain Python list (no database)
 
 ## Technology Stack
-Python 3.11 · Flask · HTML · CSS · JavaScript · pytest · Git/GitHub · Docker · Jenkins
+Python 3.11+ · Flask · HTML (Jinja templates) · CSS · JavaScript · pytest · Git/GitHub · Docker · Jenkins
 
 ## Folder Structure
 ```
 Restaurant_Project_Repo/
-├── app.py            # Flask app and routes
-├── conftest.py       # lets pytest import app.py
+├── app.py               # Flask app, routes and menu data
+├── conftest.py          # lets pytest import app.py
 ├── requirements.txt
 ├── Dockerfile
 ├── .dockerignore
-├── Jenkinsfile
+├── Jenkinsfile          # pipeline for a Windows Jenkins agent
+├── Jenkinsfile.linux    # same pipeline for Linux
 ├── README.md
 ├── PROJECT_GUIDE.md
 ├── .gitignore
-├── templates/        # base.html, index.html, about.html, menu.html, contact.html
-├── static/           # css/style.css, js/script.js, images/*.svg
-└── tests/            # test_app.py
+├── templates/           # base.html, index.html, about.html, menu.html, contact.html
+├── static/
+│   ├── css/style.css
+│   ├── js/script.js
+│   └── images/          # SVG dish illustrations, storefront, favicon
+├── screenshots/         # screenshots for this README
+└── tests/test_app.py
 ```
 
 ## Installation and Local Run
@@ -47,16 +55,36 @@ python app.py
 ```
 Open http://127.0.0.1:5000
 
+## Using your own photos
+Put a photo in `static/images/` (for example `margherita.jpg`) and change that dish's `"image"` value in the `MENU` list in `app.py`.
+
 ## Docker
 ```bash
 docker build -t restaurant-website .
 docker run -p 5000:5000 restaurant-website
 ```
+Open http://127.0.0.1:5000. Stop with `Ctrl+C`.
 
 ## Testing
 ```bash
 pytest
 ```
+The tests use Flask's test client to check that every page returns HTTP 200, unknown URLs return 404, the menu shows prices and every menu image file exists.
+
+## Jenkins (CI pipeline)
+The `Jenkinsfile` has four stages: **Checkout → Install Dependencies → Run pytest → Build Docker Image**.
+
+Setup used for this project (Jenkins installed on Windows):
+1. Install Jenkins, Python, Git and Docker Desktop. Start Docker Desktop.
+2. In Jenkins create a **Pipeline** job named `restaurant-pipeline`.
+3. Set *Definition* to **Pipeline script from SCM**, *SCM* to **Git**, repository to
+   `https://github.com/OnkarYadav007/Restaurant_Project_Repo.git`, branch `*/main`, script path `Jenkinsfile`.
+4. Edit the `PYTHON` and `DOCKER` paths at the top of the `Jenkinsfile` to match your machine (use `/` not `\`).
+5. If the Docker stage cannot connect, run the Jenkins Windows service under your own account
+   (`services.msc` → Jenkins → Properties → Log On → *This account*) and restart it.
+6. Click **Build Now**. A successful run ends with `Finished: SUCCESS` and creates the image `restaurant-website:<build number>`.
+
+On a Linux Jenkins server, rename `Jenkinsfile.linux` to `Jenkinsfile`.
 
 ## Git Workflow
 ```bash
@@ -68,13 +96,17 @@ git push -u origin feature/my-change
 ```
 
 ## Screenshots
-_Add screenshots here (Home, Menu, Contact, mobile view)._
+Add images to the `screenshots/` folder and link them here:
+
+| Home | Menu | Jenkins pipeline | Docker |
+|---|---|---|---|
+| `screenshots/home.png` | `screenshots/menu.png` | `screenshots/jenkins.png` | `screenshots/docker.png` |
 
 ## Future Improvements
-- Online table-booking form
-- Image gallery
+- Online table-booking form with email confirmation
+- Real photo gallery
 - Dark mode
-- More menu categories
+- Deploy the Docker image to a cloud service
 
 ## Contributing
 Fork the repo, create a feature branch, commit, push and open a Pull Request.

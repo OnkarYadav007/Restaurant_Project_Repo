@@ -1,17 +1,53 @@
 {% extends "base.html" %}
 {% block title %}About{% endblock %}
 {% block content %}
-<section class="section page-title"><h1>About Us</h1></section>
-<section class="section two-col">
-  <img src="{{ url_for('static', filename='images/pizza.svg') }}" alt="Pizza illustration">
-  <div>
-    <h2>Our Story</h2>
-    <p>Tasty Corner started in 2015 as a small family kitchen. Today we serve hundreds of happy guests every week.</p>
-    <p>We use fresh, local ingredients and cook every dish to order. Good food should be simple, honest and tasty.</p>
-    <ul class="values">
-      <li>🌿 Fresh ingredients</li>
-      <li>👨‍🍳 Experienced chefs</li>
-      <li>💛 Friendly service</li>
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">About us</span>
+    <h1>A small kitchen with a big appetite</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-col">
+    <img class="rounded reveal" src="{{ url_for('static', filename='images/storefront.svg') }}" alt="Illustration of the Tasty Corner restaurant front">
+    <div class="reveal">
+      <span class="eyebrow">Our story</span>
+      <h2>From a family kitchen to your neighbourhood favourite</h2>
+      <p>Tasty Corner started in 2015 as a tiny family kitchen with one oven and a handful of recipes passed down from our grandmother.</p>
+      <p>Today we serve hundreds of guests every week, but the idea is the same: use fresh ingredients, cook every dish to order, and make everyone feel at home.</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats-band">
+  <div class="container stats">
+    <div><strong>2015</strong><span>Year we opened</span></div>
+    <div><strong>12</strong><span>Team members</span></div>
+    <div><strong>50+</strong><span>Local suppliers</span></div>
+    <div><strong>10k+</strong><span>Guests served</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">What we believe</span><h2>Our values</h2></div>
+    <div class="features">
+      <div class="feature reveal"><div class="feature-icon">🌿</div><h3>Fresh ingredients</h3><p>If it is not fresh, it does not go on the plate.</p></div>
+      <div class="feature reveal"><div class="feature-icon">💛</div><h3>Warm service</h3><p>We treat every guest like a member of the family.</p></div>
+      <div class="feature reveal"><div class="feature-icon">♻️</div><h3>Less waste</h3><p>We plan our prep carefully and compost what we cannot use.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-sand">
+  <div class="container narrow">
+    <div class="section-head reveal"><span class="eyebrow">Our journey</span><h2>Milestones</h2></div>
+    <ul class="timeline">
+      <li class="reveal"><strong>2015</strong><p>Opened our doors with a 20-seat dining room.</p></li>
+      <li class="reveal"><strong>2018</strong><p>Installed our wood-fired oven and launched the pizza menu.</p></li>
+      <li class="reveal"><strong>2022</strong><p>Expanded the kitchen and added burgers and desserts.</p></li>
+      <li class="reveal"><strong>Today</strong><p>Serving hundreds of happy guests every week.</p></li>
     </ul>
   </div>
 </section>

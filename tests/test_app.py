@@ -26,3 +26,19 @@ def test_menu_shows_items(client):
 
 def test_unknown_page_returns_404(client):
     assert client.get("/nope").status_code == 404
+
+
+def test_menu_has_prices_in_rupees(client):
+    assert "₹".encode("utf-8") in client.get("/menu").data
+
+
+def test_home_has_hero_heading(client):
+    assert b"Fresh food, cooked with" in client.get("/").data
+
+
+def test_menu_images_exist():
+    """Every image named in the menu list must exist in static/images."""
+    import os
+    from app import MENU
+    for item in MENU:
+        assert os.path.exists(os.path.join("static", "images", item["image"])), item["image"]

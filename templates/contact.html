@@ -1,25 +1,35 @@
 {% extends "base.html" %}
 {% block title %}Contact{% endblock %}
 {% block content %}
-<section class="section page-title"><h1>Contact Us</h1></section>
-<section class="section two-col">
-  <div class="info">
-    <h2>Visit Us</h2>
-    <p>📍 {{ info.address }}</p>
-    <p>📞 {{ info.phone }}</p>
-    <p>✉️ {{ info.email }}</p>
-    <p>🕒 {{ info.hours }}</p>
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Contact</span>
+    <h1>Come hungry. We will do the rest.</h1>
   </div>
-  <form id="contactForm" novalidate>
-    <h2>Send a Message</h2>
-    <label for="name">Name</label>
-    <input type="text" id="name" placeholder="Your name">
-    <label for="email">Email</label>
-    <input type="email" id="email" placeholder="you@example.com">
-    <label for="message">Message</label>
-    <textarea id="message" rows="4" placeholder="How can we help?"></textarea>
-    <p class="form-msg" id="formMsg"></p>
-    <button type="submit" class="btn">Send</button>
-  </form>
+</section>
+
+<section class="section">
+  <div class="container two-col top">
+    <div class="info-stack">
+      <div class="info-card reveal"><span class="info-icon">📍</span><div><h3>Address</h3><p>{{ info.address }}</p></div></div>
+      <div class="info-card reveal"><span class="info-icon">📞</span><div><h3>Phone</h3><p>{{ info.phone }}</p></div></div>
+      <div class="info-card reveal"><span class="info-icon">✉️</span><div><h3>Email</h3><p>{{ info.email }}</p></div></div>
+      <div class="info-card reveal"><span class="info-icon">🕒</span><div><h3>Opening hours</h3>
+        {% for days, time in info.hours %}<p><strong>{{ days }}</strong><br>{{ time }}</p>{% endfor %}</div></div>
+    </div>
+
+    <form id="contactForm" class="form-card reveal" novalidate>
+      <h2>Send us a message</h2>
+      <p class="form-sub">Questions or table bookings? Fill in the form and we will reply soon.</p>
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Your name" autocomplete="name">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+      <label for="message">Message</label>
+      <textarea id="message" rows="5" placeholder="How can we help?"></textarea>
+      <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+      <button type="submit" class="btn">Send message</button>
+    </form>
+  </div>
 </section>
 {% endblock %}

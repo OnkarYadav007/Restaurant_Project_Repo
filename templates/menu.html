@@ -1,24 +1,43 @@
 {% extends "base.html" %}
 {% block title %}Menu{% endblock %}
 {% block content %}
-<section class="section page-title"><h1>Our Menu</h1></section>
-<section class="section">
-  <div class="filters" id="filters">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="pizza">Pizza</button>
-    <button class="filter-btn" data-filter="burger">Burgers</button>
-    <button class="filter-btn" data-filter="drinks">Drinks</button>
-    <button class="filter-btn" data-filter="dessert">Desserts</button>
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Our menu</span>
+    <h1>Made fresh, served hot</h1>
   </div>
-  <div class="cards">
-    {% for item in items %}
-    <article class="card menu-item" data-category="{{ item.category }}">
-      <div class="card-icon">{{ item.icon }}</div>
-      <h3>{{ item.name }}</h3>
-      <p>{{ item.desc }}</p>
-      <span class="price">${{ "%.2f"|format(item.price) }}</span>
-    </article>
-    {% endfor %}
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="toolbar">
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="pizza">Pizza</button>
+        <button class="filter-btn" data-filter="burger">Burgers</button>
+        <button class="filter-btn" data-filter="drinks">Drinks</button>
+        <button class="filter-btn" data-filter="dessert">Desserts</button>
+      </div>
+      <input type="search" id="menuSearch" class="search" placeholder="Search dishes..." aria-label="Search dishes">
+    </div>
+    <p class="legend"><span class="veg-dot veg"></span> Vegetarian <span class="veg-dot nonveg"></span> Non-vegetarian</p>
+
+    <div class="cards">
+      {% for item in items %}
+      <article class="dish-card menu-item" data-category="{{ item.category }}" data-name="{{ item.name|lower }} {{ item.desc|lower }}">
+        <div class="dish-img">
+          {% if item.badge %}<span class="badge">{{ item.badge }}</span>{% endif %}
+          <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}" loading="lazy">
+        </div>
+        <div class="dish-body">
+          <h3><span class="veg-dot {{ 'veg' if item.veg else 'nonveg' }}" title="{{ 'Vegetarian' if item.veg else 'Non-vegetarian' }}"></span>{{ item.name }}</h3>
+          <p>{{ item.desc }}</p>
+          <div class="price-row"><span class="price">₹{{ item.price }}</span></div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <p class="empty hidden" id="emptyMsg">No dishes match your search. Try another word.</p>
   </div>
 </section>
 {% endblock %}
