@@ -6,8 +6,7 @@ pipeline {
         IMAGE_NAME = 'restaurant-website'   // [DOCKER_IMAGE_NAME]
         // Forward slashes avoid the backslash problem in Jenkinsfiles
         PYTHON = 'C:/Users/ASUS/AppData/Local/Programs/Python/Python314/python.exe'
-        // Makes sure Jenkins can find the docker command
-        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
+        DOCKER = 'C:/Users/ASUS/AppData/Local/Programs/DockerDesktop/resources/bin/docker.exe'
     }
 
     stages {
@@ -37,8 +36,8 @@ pipeline {
         // Stage 4: build the Docker image, tagged with the Jenkins build number
         stage('Build Docker Image') {
             steps {
-                bat 'docker --version'
-                bat 'docker build -t %IMAGE_NAME%:%BUILD_NUMBER% .'
+                bat '"%DOCKER%" --version'
+                bat '"%DOCKER%" build -t %IMAGE_NAME%:%BUILD_NUMBER% .'
             }
         }
     }
